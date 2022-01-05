@@ -29,7 +29,21 @@ const Header = () => {
         </Row>
       </SuperHeader>
       <MainHeader>
-        <Logo />
+        <HeaderActionGroup>
+          <button>
+            <Search size={24} />
+          </button>
+          <button>
+            <Menu size={24} />
+          </button>
+        </HeaderActionGroup>
+        <LogoWrapper>
+          <Logo />
+        </LogoWrapper>
+        <SubscribeActionGroup>
+          <Button>Subscribe</Button>
+          <Link href="#login">Already a subscriber?</Link>
+        </SubscribeActionGroup>
       </MainHeader>
     </header>
   );
@@ -39,6 +53,9 @@ const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -46,17 +63,50 @@ const Row = styled(MaxWidthWrapper)`
   justify-content: space-between;
 `;
 
+const LogoWrapper = styled.div`
+  width: 100%;
+`;
+
 const ActionGroup = styled.div`
   display: flex;
   gap: 24px;
-
-  /*
-    FIX: Remove the inline spacing that comes with
-    react-feather icons.
-  */
   svg {
     display: block;
   }
+`;
+
+const HeaderActionGroup = styled.div`
+  display: none;
+  svg {
+    display: block;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+    gap: 24px;
+  }
+`;
+
+const SubscribeActionGroup = styled.div`
+  display: none;
+  svg {
+    display: block;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+`;
+
+const Link = styled.a`
+  display: block;
+  background: revert;
+  font-style: italic;
+  text-decoration: underline;
 `;
 
 const MainHeader = styled(MaxWidthWrapper)`
